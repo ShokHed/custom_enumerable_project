@@ -41,6 +41,22 @@ module Enumerable
     false
   end
 
+  def my_none?(&block)
+    my_each do |value|
+      return false if block.call(value)
+    end
+    true
+  end
+
+  def my_count(&block)
+    return length unless block_given?
+    count = 0
+    my_each do |value|
+      count += 1 if block.call(value)
+    end
+    count
+  end
+
 end
 
 # You will first have to define my_each
