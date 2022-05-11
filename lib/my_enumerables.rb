@@ -65,7 +65,13 @@ module Enumerable
     mapped
   end
 
-
+  def my_inject(initial_value, &block)
+    accumulator = initial_value ? initial_value : 0
+    my_each do |value|
+      accumulator = block.call(accumulator, value)
+    end
+    accumulator
+  end
 
 end
 
